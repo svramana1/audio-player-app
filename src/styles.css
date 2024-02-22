@@ -1,0 +1,17 @@
+/* styles.css */
+.app {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .file-uploader {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    cursor: pointer;
+  }
+  
+  .playlist {
+    margin-top: 20px;
+    border-radius: 14%;
+  }
+  

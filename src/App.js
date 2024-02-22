@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState, useEffect } from 'react';
+import FileUploader from './components/FileUploader';  // Adjust the path
+import AudioPlayer from './components/AudioPlayer';    // Adjust the path
+import Playlist from './components/Playlist';
 
-function App() {
+const App = () => {
+  const [audioFile, setAudioFile] = useState(null);
+  const [playlist, setPlaylist] = useState([]);
+
+  const handleFileUpload = (file) => {
+    setAudioFile(file);
+    setPlaylist([...playlist, { name: file.name, src: URL.createObjectURL(file) }]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <FileUploader onFileUpload={handleFileUpload} />
+      {audioFile && <AudioPlayer audioSrc={URL.createObjectURL(audioFile)} />}
+      {playlist.length > 0 && <Playlist playlist={playlist} />}
     </div>
   );
-}
+};
 
 export default App;
